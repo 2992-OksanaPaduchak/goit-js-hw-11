@@ -23,6 +23,7 @@ form.addEventListener('submit', (evt) => {
     getAllPhoto(queryInput)
         .then((res) => {
             const hits = res.data.hits;
+            loader.style.display = 'none';
 
             if (!hits.length) {
                 const message = `'Sorry, there are no images matching your search query. Please try again!'`;
@@ -41,12 +42,12 @@ form.addEventListener('submit', (evt) => {
                 })
                 return;
             }
-
+            
             renderGallery(hits);
-            loader.style.display = 'none'
-        })
+        });
 
     form.reset();
 });
+
 
 
