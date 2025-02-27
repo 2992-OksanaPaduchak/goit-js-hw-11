@@ -14,7 +14,21 @@ form.addEventListener('submit', (evt) => {
     evt.preventDefault();
     const queryInput = evt.target.query.value.trim();
     if (queryInput === "") {
-        return alert('Fill please field');
+        const message = `'Fill please field'`;
+        iziToast.show({
+            message,
+            iconUrl: iconError,
+            title: 'Erorr',
+            titleColor: '#fff',
+            titleSize: '16px',
+            titleLineHeight: '24px',
+            messageSize: '16px',
+            messageLineHeight: '24px',
+            messageColor: '#fff',
+            backgroundColor: ' #ef4040',
+            position: 'topRight',
+        });
+        return
     }
 
     galleryImage.innerHTML = '';
@@ -44,10 +58,26 @@ form.addEventListener('submit', (evt) => {
             }
             
             renderGallery(hits);
+        })
+    .catch(() => {
+            iziToast.show({
+                message: 'An error occurred while fetching images. Please try again later!',
+                iconUrl: iconError,
+                title: 'Error',
+                titleColor: '#fff',
+                titleSize: '16px',
+                titleLineHeight: '24px',
+                messageSize: '16px',
+                messageLineHeight: '24px',
+                messageColor: '#fff',
+                backgroundColor: '#ef4040',
+                position: 'topRight',
+            });
+        })
+        .finally( () => {
+            loader.style.display = 'none';
         });
 
     form.reset();
 });
-
-
 
