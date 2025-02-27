@@ -28,7 +28,7 @@ form.addEventListener('submit', (evt) => {
             backgroundColor: ' #ef4040',
             position: 'topRight',
         });
-        return
+        return;
     }
 
     galleryImage.innerHTML = '';
